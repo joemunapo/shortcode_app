@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1024px;
+        height: 500px;
+        margin: 0;
+        overflow: hidden;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: #14222b;
+        color: #ffffff;
+      }
+
+      .canvas {
+        position: relative;
+        width: 1024px;
+        height: 500px;
+        padding: 72px 84px;
+        display: flex;
+        align-items: center;
+        gap: 46px;
+      }
+
+      .canvas::before {
+        content: "";
+        position: absolute;
+        inset: auto -90px -140px 390px;
+        height: 280px;
+        border-radius: 999px;
+        background: #009b8b;
+        opacity: 0.25;
+        transform: rotate(-12deg);
+      }
+
+      .canvas::after {
+        content: "#";
+        position: absolute;
+        right: 62px;
+        top: 16px;
+        color: rgba(212, 244, 95, 0.16);
+        font-size: 270px;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .icon-wrap {
+        position: relative;
+        z-index: 1;
+        flex: 0 0 auto;
+        width: 178px;
+        height: 178px;
+        border-radius: 42px;
+        background: #ffffff;
+        padding: 18px;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        border-radius: 28px;
+      }
+
+      .copy {
+        position: relative;
+        z-index: 1;
+        max-width: 610px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 78px;
+        line-height: 0.95;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin: 22px 0 0;
+        color: #c9d6d1;
+        font-size: 33px;
+        line-height: 1.18;
+        font-weight: 600;
+      }
+
+      .pill {
+        display: inline-flex;
+        margin-top: 30px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: #d4f45f;
+        color: #14222b;
+        font-size: 19px;
+        font-weight: 900;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="canvas">
+      <div class="icon-wrap">
+        <img src="icon-512.png" alt="" />
+      </div>
+      <div class="copy">
+        <h1>Shortcode</h1>
+        <p>Build. Preview. Dial.</p>
+        <div class="pill">Fast EcoCash agent shortcodes</div>
+      </div>
+    </div>
+  </body>
+</html>

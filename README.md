@@ -1,17 +1,46 @@
-# shortcode
+# Shortcode
 
-Shortcode builder for Zimbabwe mobile money agents
+Shortcode is a small Android utility for building, previewing, and dialing
+EcoCash agent USSD shortcodes.
 
-## Getting Started
+Package name: `shortcode.fintraqr.com`
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- Agent to Agent
+- Cash In
+- Buy Airtime
+- Cash Deposit
+- Zimbabwe phone number normalization
+- Contact picker and paste shortcuts
+- Native Android share links for Joe Munapo's work
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Release Builds
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Build the Play Store bundle:
+
+```sh
+flutter build appbundle --release --tree-shake-icons --obfuscate --split-debug-info=build/symbols
+```
+
+Build split APKs for device testing:
+
+```sh
+flutter build apk --release --split-per-abi --tree-shake-icons --obfuscate --split-debug-info=build/symbols
+```
+
+Primary outputs:
+
+- `build/app/outputs/bundle/release/app-release.aab`
+- `build/app/outputs/flutter-apk/app-arm64-v8a-release.apk`
+
+## Signing
+
+Release builds read signing config from `android/key.properties`. This file is
+local-only and ignored by git.
+
+## Privacy Policy
+
+Google Play privacy policy:
+
+https://joemunapo.github.io/shortcode_app/privacy-policy/
