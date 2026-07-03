@@ -44,3 +44,5 @@ local-only and ignored by git.
 Google Play privacy policy:
 
 https://joemunapo.github.io/shortcode_app/privacy-policy/
+
+I: https://play.google.com/apps/internaltest/4700801169860300072
