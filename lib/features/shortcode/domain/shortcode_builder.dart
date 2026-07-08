@@ -58,6 +58,20 @@ class ShortcodeBuilder {
 
   String normalizePhoneCandidate(String input) => _normalizeZimNumber(input);
 
+  /// Returns the normalized target when it is valid on its own
+  /// (regardless of amount), or null.
+  String? normalizedValidTarget({
+    required ShortcodeMethod method,
+    required String rawTarget,
+  }) {
+    if (method.needsAgentCode) {
+      final code = _sanitizeAgentCode(rawTarget);
+      return _isValidAgentCode(code) ? code : null;
+    }
+    final number = _normalizeZimNumber(rawTarget);
+    return _isValidZimMsisdn(number) ? number : null;
+  }
+
   String _normalizeZimNumber(String input) {
     var number = input.replaceAll(RegExp(r'[^0-9+]'), '');
     if (number.isEmpty) return '';

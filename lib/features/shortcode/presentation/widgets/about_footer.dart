@@ -14,10 +14,12 @@ class AboutFooter extends StatelessWidget {
   final NativePhoneService phoneService;
   final ValueChanged<String> onError;
 
+  static const _playStoreUrl =
+      'https://play.google.com/store/apps/details?id=shortcode.fintraqr.com';
   static const _githubUrl = 'https://github.com/joemunapo';
   static const _xUrl = 'https://x.com/joemunapo';
   static const _shareText =
-      'I use Shortcode for quick EcoCash agent codes. Built by Joe Munapo, who makes custom apps, dashboards, websites, and automation for businesses. GitHub: $_githubUrl X: $_xUrl';
+      'I use Shortcode for quick EcoCash agent codes: $_playStoreUrl\n\nBuilt by Joe Munapo, who makes custom apps, dashboards, websites, and automation for businesses.\nGitHub: $_githubUrl\nX: $_xUrl';
 
   Future<void> _share() async {
     try {
