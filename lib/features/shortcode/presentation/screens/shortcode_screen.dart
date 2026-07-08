@@ -231,91 +231,110 @@ class _ShortcodeScreenState extends State<ShortcodeScreen> {
             const SliverToBoxAdapter(child: ShortcodeHeader()),
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16, 18, 16, 28),
-              sliver: SliverList.list(
-                children: [
-                  ActionSelector(selected: _method, onChanged: _selectMethod),
-                  const SizedBox(height: 18),
-                  LabeledInput(
-                    controller: _targetController,
-                    label: _method.numberLabel,
-                    hint: _method.numberHint,
-                    keyboardType: TextInputType.phone,
-                    inputFormatters: isAgentCode
-                        ? [FilteringTextInputFormatter.digitsOnly]
-                        : const [],
-                    trailing: trailingButtons.isEmpty
-                        ? null
-                        : Wrap(spacing: 4, children: trailingButtons),
-                  ),
-                  if (matchedNamed != null) ...[
-                    const SizedBox(height: 6),
-                    Row(
+              sliver: SliverToBoxAdapter(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: AppLayout.maxContentWidth,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const Icon(
-                          Icons.check_circle_rounded,
-                          size: 15,
-                          color: AppColors.emerald,
+                        ActionSelector(
+                          selected: _method,
+                          onChanged: _selectMethod,
                         ),
-                        const SizedBox(width: 5),
-                        Expanded(
-                          child: Text(
-                            matchedNamed.nickname == null
-                                ? matchedNamed.name
-                                : '${matchedNamed.name} · “${matchedNamed.nickname}”',
-                            style: const TextStyle(
-                              color: AppColors.mutedInk,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                        const SizedBox(height: 18),
+                        LabeledInput(
+                          controller: _targetController,
+                          label: _method.numberLabel,
+                          hint: _method.numberHint,
+                          keyboardType: TextInputType.phone,
+                          inputFormatters: isAgentCode
+                              ? [FilteringTextInputFormatter.digitsOnly]
+                              : const [],
+                          trailing: trailingButtons.isEmpty
+                              ? null
+                              : Wrap(spacing: 4, children: trailingButtons),
+                        ),
+                        if (matchedNamed != null) ...[
+                          const SizedBox(height: 6),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.check_circle_rounded,
+                                size: 15,
+                                color: AppColors.emerald,
+                              ),
+                              const SizedBox(width: 5),
+                              Expanded(
+                                child: Text(
+                                  matchedNamed.nickname == null
+                                      ? matchedNamed.name
+                                      : '${matchedNamed.name} · “${matchedNamed.nickname}”',
+                                  style: const TextStyle(
+                                    color: AppColors.mutedInk,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                        if (_targets.isNotEmpty) ...[
+                          const SizedBox(height: 10),
+                          SavedTargetChips(
+                            type: _targetType,
+                            entries: _targets,
+                            onSelected: (entry) =>
+                                _targetController.text = entry.value,
+                            onLongPress: (entry) => _openSaveSheet(
+                              _targetType,
+                              entry.value,
+                              existing: entry,
                             ),
+                          ),
+                        ],
+                        const SizedBox(height: 14),
+                        LabeledInput(
+                          controller: _amountController,
+                          label: _method.amountLabel,
+                          hint: 'e.g. 10',
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        AmountChips(
+                          onSelected: (amount) =>
+                              _amountController.text = amount,
+                        ),
+                        const SizedBox(height: 18),
+                        PreviewCard(
+                          code: _result.code,
+                          isValid: _result.isValid,
+                          onDial: _dial,
+                        ),
+                        const SizedBox(height: 16),
+                        AboutFooter(
+                          phoneService: _phoneService,
+                          onError: _showMessage,
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Zimbabwe · EcoCash agent shortcodes',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: AppColors.mutedInk,
+                            fontSize: 12,
                           ),
                         ),
                       ],
                     ),
-                  ],
-                  if (_targets.isNotEmpty) ...[
-                    const SizedBox(height: 10),
-                    SavedTargetChips(
-                      type: _targetType,
-                      entries: _targets,
-                      onSelected: (entry) =>
-                          _targetController.text = entry.value,
-                      onLongPress: (entry) => _openSaveSheet(
-                        _targetType,
-                        entry.value,
-                        existing: entry,
-                      ),
-                    ),
-                  ],
-                  const SizedBox(height: 14),
-                  LabeledInput(
-                    controller: _amountController,
-                    label: _method.amountLabel,
-                    hint: 'e.g. 10',
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   ),
-                  const SizedBox(height: 10),
-                  AmountChips(
-                    onSelected: (amount) => _amountController.text = amount,
-                  ),
-                  const SizedBox(height: 18),
-                  PreviewCard(
-                    code: _result.code,
-                    isValid: _result.isValid,
-                    onDial: _dial,
-                  ),
-                  const SizedBox(height: 16),
-                  AboutFooter(
-                    phoneService: _phoneService,
-                    onError: _showMessage,
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Zimbabwe · EcoCash agent shortcodes',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.mutedInk, fontSize: 12),
-                  ),
-                ],
+                ),
               ),
             ),
           ],

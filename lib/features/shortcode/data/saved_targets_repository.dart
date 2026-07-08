@@ -81,9 +81,7 @@ class SavedTargetsRepository {
   }
 
   Future<List<SavedTarget>> remove(TargetType type, String value) async {
-    final targets = (await load(
-      type,
-    )).where((t) => t.value != value).toList();
+    final targets = (await load(type)).where((t) => t.value != value).toList();
     return _store(type, targets);
   }
 

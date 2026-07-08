@@ -18,7 +18,9 @@ class ShortcodeHeader extends StatelessWidget {
           bottomRight: Radius.circular(28),
         ),
       ),
-      child: Padding(
+      alignment: Alignment.center,
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: AppLayout.maxContentWidth),
         padding: EdgeInsets.fromLTRB(20, headerTopPadding, 20, 26),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

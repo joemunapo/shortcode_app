@@ -19,11 +19,11 @@ class ActionSelector extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: ShortcodeMethod.values.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 280,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
-        childAspectRatio: 1.38,
+        mainAxisExtent: 118,
       ),
       itemBuilder: (context, index) {
         final method = ShortcodeMethod.values[index];

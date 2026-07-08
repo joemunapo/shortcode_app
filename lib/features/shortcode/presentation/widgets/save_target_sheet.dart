@@ -28,11 +28,14 @@ Future<SaveTargetSheetResult?> showSaveTargetSheet(
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.white,
+    constraints: const BoxConstraints(maxWidth: AppLayout.maxContentWidth),
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
     ),
     builder: (context) => Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
       child: _SaveTargetSheet(
         displayValue: displayValue,
         typeLabel: typeLabel,
@@ -144,9 +147,7 @@ class _SaveTargetSheetState extends State<_SaveTargetSheet> {
               textCapitalization: TextCapitalization.words,
               textInputAction: TextInputAction.done,
               onSubmitted: (_) => canSave ? _save() : null,
-              decoration: const InputDecoration(
-                hintText: 'What you call them',
-              ),
+              decoration: const InputDecoration(hintText: 'What you call them'),
             ),
             const SizedBox(height: 18),
             Row(

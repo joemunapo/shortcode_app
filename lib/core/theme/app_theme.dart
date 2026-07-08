@@ -89,6 +89,11 @@ class AppTheme {
   }
 }
 
+class AppLayout {
+  /// Content column cap so the form stays phone-sized on tablets.
+  static const maxContentWidth = 560.0;
+}
+
 class AppColors {
   static const ink = Color(0xFF14222B);
   static const mutedInk = Color(0xFF586660);

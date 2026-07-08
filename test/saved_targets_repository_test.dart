@@ -89,9 +89,7 @@ void main() {
   });
 
   test('load survives corrupt stored data', () async {
-    SharedPreferences.setMockInitialValues({
-      'saved_targets_phone': 'not json',
-    });
+    SharedPreferences.setMockInitialValues({'saved_targets_phone': 'not json'});
     expect(await repo.load(TargetType.phone), isEmpty);
   });
 
